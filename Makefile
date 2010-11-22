@@ -44,6 +44,9 @@ ${TAR}: ${JAR} ${JAR_SRC} ${TAR_IMAGE} ${TAR_IMAGE}/lib
 
 dist: clean ${TAR}
 
+publish:
+	rsync -aH --stats --exclude \*~ ${ETC}/www/ web@mth.io:lever.mth.io/data
+
 ${DIST_MANIFEST}: ${GEN}
 	sed -e 's/VERSION/${VERSION}/' ${MANIFEST} > ${DIST_MANIFEST}
 
